@@ -5,7 +5,7 @@ import pandas as pd
 from PIL import Image
 
 st.set_page_config(
-    page_title="Skin Lesion Diagnosis",
+    page_title="Skin Lesion Classifier Demo",
     layout="centered"
 )
 
@@ -17,12 +17,12 @@ with st.spinner('Loading model..'):
     model = load_model()
 
 classes = {
-    0: 'Actinic keratosis (Pre-cancer)',
+    0: 'Actinic keratosis (Cancer - Pre)',
     1: 'Basal cell carcinoma (Cancer)',
     2: 'Benign keratosis (Benign)',
     3: 'Dermatofibroma (Benign)',
-    4: 'Melanoma (DANGEROUS Cancer)',
-    5: 'Melanocytic nevi (Mole)',
+    4: 'Melanoma (Cancer)',
+    5: 'Melanocytic nevi (Benign - Mole)',
     6: 'Vascular lesion (Benign)'
 }
 
@@ -34,7 +34,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("Skin Lesion Diagnosis App")
+st.title("Skin Lesion Diagnosis")
 st.markdown("---")
 
 # upload section
@@ -61,10 +61,10 @@ if uploaded_file is not None:
     st.markdown("---")
     st.subheader("2. Analysis Results")
 
-    if "Cancer" in predicted_class or "Melanoma" in predicted_class or "Carcinoma" in predicted_class:
-        st.error(f"Error **Diagnosis:** {predicted_class}")
+    if "Cancer" in predicted_class :
+        st.error(f"Detected **Diagnosis:** {predicted_class}") # to show cancer results in red
     else:
-        st.success(f"Success **Diagnosis:** {predicted_class}")
+        st.success(f"Detected **Diagnosis:** {predicted_class}")    # to show benign results in green
 
     col_centered, _ = st.columns([1, 0.1])
     with col_centered:
