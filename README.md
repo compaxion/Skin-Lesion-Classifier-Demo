@@ -1,4 +1,4 @@
-# Skin Lesion Classification Dashboard — with Authentication
+# Skin Lesion Classification Dashboard
 
 A Streamlit dashboard for skin-lesion classification that uses a trained Keras multi-modal model (EfficientNetB2 + patient metadata) to predict the lesion type from a dermoscopic image. This version adds a SQLite-backed authentication layer and per-user upload history.
 
